@@ -1,0 +1,208 @@
+#:import FitImage kivymd.uix.fitimage.fitimage.FitImage
+
+# Menu item in the DrawerList list.
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.on_release()
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+
+<MagicButton@MagicBehavior+MDIconButton>
+
+<MySwiper@MDSwiperItem>
+    RelativeLayout:
+        FitImage:
+            source: "../photos/baked-potatoes-1200x799.webp"
+            radius: [20,]
+
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: "12dp"
+
+            MagicButton:
+                id: icon
+                icon: "food"
+                user_font_size: "56sp"
+                opposite_colors: True
+
+            MDLabel:
+                text: "Baked Potatoes"
+                font_style: "H5"
+                size_hint_y: None
+                height: self.texture_size[1]
+                pos_hint: {"center_y": .5}
+                opposite_colors: True
+
+<MySwiper2@MDSwiperItem>
+    RelativeLayout:
+        FitImage:
+            source: "../photos/Baked-Potatoesrex-cfhk-mediumSquareAt3X.jpg"
+            radius: [20,]
+
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: "12dp"
+
+            MagicButton:
+                id: icon
+                icon: "food-turkey"
+                user_font_size: "56sp"
+                opposite_colors: True
+
+            MDLabel:
+                text: "Crispy Potatoes"
+                font_style: "H5"
+                size_hint_y: None
+                height: self.texture_size[1]
+                pos_hint: {"center_y": .5}
+                opposite_colors: True
+
+<MySwiper3@MDSwiperItem>
+    RelativeLayout:
+        FitImage:
+            source: "../photos/images.jpeg"
+            radius: [20,]
+
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: "12dp"
+
+            MagicButton:
+                id: icon
+                icon: "food-fork-drink"
+                user_font_size: "56sp"
+                opposite_colors: True
+
+            MDLabel:
+                text: "Fresh Potatoes"
+                font_style: "H5"
+                size_hint_y: None
+                height: self.texture_size[1]
+                pos_hint: {"center_y": .5}
+                opposite_colors: True
+
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "../landscape.jpg"
+
+    MDLabel:
+        text: "KivyMD library"
+        font_style: "Button"
+        adaptive_height: True
+
+    MDLabel:
+        text: "kivydevelopment@gmail.com"
+        font_style: "Caption"
+        adaptive_height: True
+
+    ScrollView:
+        DrawerList:
+            id: md_list
+
+MDScreen:
+    MDNavigationLayout:
+        ScreenManager:
+            id: screen_manager
+
+            MainScreen:
+                name: "main_screen"
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "Task 3 App"
+                        elevation: 4
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        
+                        MDSwiper:
+                            id: swiper
+                            size_hint_y: 0.4
+                            pos_hint: {"top": .95}
+                            on_swipe: self.get_current_item().ids.icon.shake()
+
+                            MySwiper:
+                            MySwiper2:
+                            MySwiper3:
+
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            spacing: "20dp"
+                            size_hint_y: None
+                            height: self.minimum_height
+                            pos_hint: {"center_x": .5, "center_y": .35}
+                            padding: "20dp"
+
+                            MDLabel:
+                                id: my_label
+                                text: "Initial text"
+                                halign: "center"
+                                theme_text_color: "Primary"
+                                font_style: "H5"
+                                adaptive_height: True
+
+                            MDRaisedButton:
+                                text: "Change Text"
+                                pos_hint: {'center_x': 0.5}
+                                on_release: app.change_label_text()
+
+                            MDRaisedButton:
+                                text: "Show Dialog"
+                                pos_hint: {'center_x': 0.5}
+                                on_release: app.show_alert_dialog()
+
+            PhotosScreen:
+                name: "photos_screen"
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "My Photos"
+                        elevation: 4
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+
+                    MDGridLayout:
+                        cols: 2
+                        padding: "20dp"
+                        spacing: "20dp"
+
+                        FitImage:
+                            source: "../photos/baked-potatoes-1200x799.webp"
+                            size_hint_y: None
+                            height: "150dp"
+                            radius: [20,]
+
+                        FitImage:
+                            source: "../photos/Baked-Potatoesrex-cfhk-mediumSquareAt3X.jpg"
+                            size_hint_y: None
+                            height: "150dp"
+                            radius: [20,]
+
+                        FitImage:
+                            source: "../photos/images.jpeg"
+                            size_hint_y: None
+                            height: "150dp"
+                            radius: [20,]
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                id: content_drawer
