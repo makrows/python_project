@@ -1,0 +1,55 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Jan Kowalski",
+      "email": "jan.kowalski@student.edu.pl",
+      "phone": "+48 123 456 789",
+      "address": "ul. Akademicka 12, 00-001 Warszawa",
+      "photo": "../photos/baked-potatoes-1200x799.webp",
+      "grades": [4.0, 3.5, 4.5, 3.0, 4.0],
+      "average": 3.8
+    },
+    {
+      "id": 2,
+      "name": "Anna Nowak",
+      "email": "anna.nowak@student.edu.pl",
+      "phone": "+48 987 654 321",
+      "address": "ul. Studencka 5, 00-002 Warszawa",
+      "photo": "../photos/Baked-Potatoesrex-cfhk-mediumSquareAt3X.jpg",
+      "grades": [2.0, 2.5, 3.0, 2.0, 2.5],
+      "average": 2.4
+    },
+    {
+      "id": 3,
+      "name": "Piotr Wiśniewski",
+      "email": "piotr.wisniewski@student.edu.pl",
+      "phone": "+48 555 666 777",
+      "address": "ul. Uniwersytecka 8, 00-003 Warszawa",
+      "photo": "../photos/images.jpeg",
+      "grades": [5.0, 4.5, 4.0, 5.0, 4.5],
+      "average": 4.6
+    },
+    {
+      "id": 4,
+      "name": "Maria Kowalczyk",
+      "email": "maria.kowalczyk@student.edu.pl",
+      "phone": "+48 111 222 333",
+      "address": "ul. Edukacyjna 15, 00-004 Warszawa",
+      "photo": "../landscape.jpg",
+      "grades": [3.0, 3.0, 3.5, 3.0, 3.0],
+      "average": 3.1
+    },
+    {
+      "id": 5,
+      "name": "Tomasz Lewandowski",
+      "email": "tomasz.lewandowski@student.edu.pl",
+      "phone": "+48 444 555 666",
+      "address": "ul. Naukowa 22, 00-005 Warszawa",
+      "photo": "../photos/baked-potatoes-1200x799.webp",
+      "grades": [2.5, 2.0, 2.5, 2.0, 2.0],
+      "average": 2.2
+    }
+  ],
+  "passing_threshold": 3.0
+}

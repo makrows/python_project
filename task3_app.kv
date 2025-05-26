@@ -1,0 +1,199 @@
+#:import FitImage kivymd.uix.fitimage.fitimage.FitImage
+
+# Menu item in the DrawerList list.
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.on_release()
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+
+<StudentCard@MDCard>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: "200dp"
+    padding: "10dp"
+    spacing: "10dp"
+    elevation: 2
+
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "../landscape.jpg"
+
+    MDLabel:
+        text: "e-rektor.pl"
+        font_style: "Button"
+        adaptive_height: True
+
+    MDLabel:
+        text: "System zarządzania studentami"
+        font_style: "Caption"
+        adaptive_height: True
+
+    ScrollView:
+        DrawerList:
+            id: md_list
+
+MDScreen:
+    MDNavigationLayout:
+        ScreenManager:
+            id: screen_manager
+
+            MainScreen:
+                name: "main_screen"
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "e-rektor.pl"
+                        elevation: 4
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [['refresh', lambda x: app.load_student_data()]]
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        padding: "20dp"
+                        spacing: "20dp"
+
+                        MDLabel:
+                            text: "Witaj w systemie e-rektor.pl"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_style: "H4"
+                            adaptive_height: True
+
+                        MDLabel:
+                            text: "System zarządzania studentami dla dziekanów uczelni"
+                            halign: "center"
+                            theme_text_color: "Secondary"
+                            font_style: "Body1"
+                            adaptive_height: True
+
+                        MDCard:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "300dp"
+                            padding: "20dp"
+                            spacing: "10dp"
+                            elevation: 3
+
+                            MDLabel:
+                                text: "Funkcje systemu:"
+                                font_style: "H6"
+                                adaptive_height: True
+
+                            MDLabel:
+                                text: "• Przeglądanie listy wszystkich studentów"
+                                adaptive_height: True
+
+                            MDLabel:
+                                text: "• Filtrowanie studentów zdających/niezdających"
+                                adaptive_height: True
+
+                            MDLabel:
+                                text: "• Wyświetlanie szczegółowych informacji o studentach"
+                                adaptive_height: True
+
+                            MDLabel:
+                                text: "• Statystyki zdawalności"
+                                adaptive_height: True
+
+                            MDLabel:
+                                text: "• Próg zdania: średnia ≥ 3.0"
+                                theme_text_color: "Primary"
+                                font_style: "Subtitle1"
+                                adaptive_height: True
+
+            StudentsScreen:
+                name: "students_screen"
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "👥 Wszyscy studenci"
+                        elevation: 4
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [['refresh', lambda x: app.switch_screen("students_screen")]]
+
+                    ScrollView:
+                        MDList:
+                            id: student_list
+
+            PassingStudentsScreen:
+                name: "passing_students_screen"
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "✅ Studenci zdający (≥3.0)"
+                        elevation: 4
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [['refresh', lambda x: app.switch_screen("passing_students_screen")]]
+
+                    ScrollView:
+                        MDList:
+                            id: student_list
+
+            FailingStudentsScreen:
+                name: "failing_students_screen"
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "❌ Studenci niezdający (<3.0)"
+                        elevation: 4
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [['refresh', lambda x: app.switch_screen("failing_students_screen")]]
+
+                    ScrollView:
+                        MDList:
+                            id: student_list
+
+            StatisticsScreen:
+                name: "statistics_screen"
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "📊 Statystyki"
+                        elevation: 4
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [['refresh', lambda x: app.switch_screen("statistics_screen")]]
+
+                    ScrollView:
+                        MDCard:
+                            orientation: "vertical"
+                            size_hint: 1, None
+                            height: "600dp"
+                            pos_hint: {"center_x": 0.5}
+                            padding: "20dp"
+                            elevation: 3
+
+                            MDLabel:
+                                id: stats_label
+                                text: "📊 Ładowanie statystyk..."
+                                halign: "left"
+                                valign: "top"
+                                font_style: "Body1"
+                                markup: True
+                                text_size: self.width, None
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                id: content_drawer
